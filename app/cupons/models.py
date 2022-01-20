@@ -25,10 +25,15 @@ class Cupom(BaseModel):
     data_inicio = db.Column(db.DateTime, nullable = False)
     data_termino = db.Column(db.DateTime, nullable = True)
     limite_usuarios = db.Column(db.Integer, nullable = True)
+    objetivo = db.Column(db.String(50), nullable = False) #Ex: Atrair clientes, venda por impulso, conversão de carrinho abandonado, etc
 
+
+    #Many-to-Many Relationships
     users = db.relationship("User", secondary = associacao_cupom_user)
-    carrinho = db.relationship("Carrinho")
-    pedido = db.relationship("Pedido")
+
+    #One-to-One Relationships
+    id_carrinho = db.Column(db.Integer, db.ForeignKey('carrinho.id'))
+    carrinho = db.relationship("Carrinho", back_populates="pedido")
     
     def json(self): 
 

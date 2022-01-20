@@ -16,12 +16,6 @@ def create_app():
     db.init_app(app)
     migrate.init_app(app, db)
 
-    #from .views import views
-    #from .auth import auth
-
-    #app.register_blueprint(views, url_prefix = '/')
-    #app.register_blueprint(auth, url_prefix = '/')
-
     app.register_blueprint(user_api)
     app.register_blueprint(cupom_api)
     app.register_blueprint(veiculo_api)

@@ -20,6 +20,10 @@ class Veiculo(BaseModel):
     preco_normal = db.Column(db.Float, nullable = False)
     preco_descontado = db.Column(db.Float, nullable = True)
     cambio = db.Column(db.String(15), nullable = False)
+    combustivel = db.Column(db.String(15), nullable = False)
+    itens_de_serie = db.Column(db.String(100), nullable = False)
+    entrada_minima = db.Column(db.Float, nullable = False)
+    tabela_FIPE = db.Column(db.Float, nullable = False)
 
 
     def json(self): 
@@ -41,8 +45,8 @@ class Carro(Veiculo):
 
     __tablename__ = 'carro'
 
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    id_pedido = db.Column(db.Integer, db.ForeignKey('pedido.id'))
+    #Many-to-One Relationships
+    id_carrinho = db.Column(db.Integer, db.ForeignKey('carrinho.id'))
 
 
 
@@ -50,8 +54,8 @@ class Moto(Veiculo):
 
     __tablename__ = 'moto'
 
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    id_pedido = db.Column(db.Integer, db.ForeignKey('pedido.id'))
+    #Many-to-One Relationships
+    id_carrinho = db.Column(db.Integer, db.ForeignKey('carrinho.id'))
 
 
 
